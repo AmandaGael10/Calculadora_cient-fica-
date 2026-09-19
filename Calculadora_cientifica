@@ -1,0 +1,91 @@
+import sympy as sp
+from sympy import symbols, sympify, diff
+from sympy import integrate, symbols, init_printing
+from sympy.abc import x # Importa 'x' como símbolo
+# o: x = Symbol('x')
+import numpy as np
+
+def pedir_numeros():
+    a = int(input("Pon el primer número: "))
+    b = int(input("Pon el segundo número: "))
+    return a, b
+
+def matriz():
+    A = np.array(input("Pon la matriz A")) # Matriz 2x2
+    B = np.array(input("Pon la matriz B"))
+    return A, B
+
+def sum(a,b):
+    return (a + b)
+
+def rest(a,b):
+    return (a - b)
+    
+def mul(a,b):
+    return (a*b)
+    
+def div(a,b):
+    return (a/b)
+
+x = sp.symbols('x')
+
+print("🧠 Bienvenida a la Calculadora Inteligente")
+print("Elige una operación:")
+
+while True:
+    print("1. Suma")
+    print("2. Resta")
+    print("3. Multiplicación")
+    print("4. División")
+    print("5. Derivadas")
+    print("6. Integrales idefinidas")
+    print("7. Integrales definidas")
+    print("8. Salir")
+
+    opcion = input("Escribe el número de la operación: ")
+
+
+    if opcion == "1":
+        a = int(input("Pon el primer número: "))
+        b = int(input("Pon el segundo número: "))
+        print("La suma es:", sum(a,b))
+    
+    elif opcion == "2": 
+        a, b = pedir_numeros() 
+        print("La resta es:", rest(a,b))
+
+    elif opcion == "3":  
+        a, b = pedir_numeros()
+        print("La multiplicación es:", mul(a,b))
+
+    elif opcion == "4":
+        a, b = pedir_numeros()
+        if b == 0:
+            print("No se puede dividir entre cero")
+        else:
+            print("La división es:", div(a,b))
+
+    elif opcion == "5":
+        funcion = input("f(x)= ")
+        f = sympify(funcion)
+        print("La derivada de la función es:", sp.diff(f, x))
+
+    elif opcion == "6":
+        f = input("f(x)= ")
+        integral_indefinida = integrate(f, x)
+        print(f"Integral indefinida de {f}: {integral_indefinida}", "+ c")
+
+    elif opcion == "7":
+        g = input("f(x) = ")
+        integral_definida = integrate(g, (x, 0, 2))
+        print(f"Integral definida de {g} de 0 a 2: {integral_definida}")
+
+
+    elif opcion == "8":
+        print("Hasta luego 👋")
+        break
+
+else:
+    print("Opción no válida")
+
+
